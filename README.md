@@ -1,73 +1,145 @@
-# React + TypeScript + Vite
+# Artworks DataTable with Custom Selection (PrimeReact)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React + TypeScript application that displays artworks from the **Art Institute of Chicago API** using **PrimeReact DataTable**.
+It supports **server-side pagination**, **checkbox row selection**, and a **custom “select N rows” feature** across paginated data.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## ✨ Features
 
-## React Compiler
+* 📦 Fetches real-time artwork data from a public API
+* 📊 PrimeReact DataTable with:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+  * Lazy (server-side) pagination
+  * Checkbox-based multi-row selection
+  * Striped rows and loading states
+* 🔢 Custom row selection:
 
-## Expanding the ESLint configuration
+  * Select a specific number of rows using an input overlay
+  * Maintains selection across pages
+* 🧠 Intelligent selection handling to avoid duplicates
+* 💙 Clean UI using PrimeReact’s Lara Light Blue theme
+* 🧾 Displays selected artwork count dynamically
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+* **React**
+* **TypeScript**
+* **PrimeReact**
+* **PrimeIcons**
+* **Art Institute of Chicago Public API**
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 📸 Preview
+
+> Displays paginated artwork data with selectable rows and a custom selection control in the table header.
+
+---
+
+## 🚀 Getting Started
+
+### 1. Clone the repository
+
+```bash
+git clone https://github.com/your-username/artworks-datatable.git
+cd artworks-datatable
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+### 2. Install dependencies
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
 ```
+
+or
+
+```bash
+yarn install
+```
+
+### 3. Run the development server
+
+```bash
+npm run dev
+```
+
+or
+
+```bash
+yarn dev
+```
+
+---
+
+## 🌐 API Used
+
+**Art Institute of Chicago API**
+
+```text
+https://api.artic.edu/api/v1/artworks
+```
+
+Fields fetched:
+
+* `id`
+* `title`
+* `place_of_origin`
+* `artist_display`
+* `inscriptions`
+* `date_start`
+* `date_end`
+
+---
+
+## 🧩 Key Implementation Details
+
+* **Lazy Pagination**
+  Data is fetched page-by-page to improve performance.
+
+* **Custom Row Selection**
+  Users can input a number (e.g., 20), and the app will automatically select the first N artworks across paginated results.
+
+* **Selection Persistence**
+  Selected rows remain selected even when navigating between pages.
+
+* **OverlayPanel Control**
+  PrimeReact’s `OverlayPanel` is used to provide a compact custom selection UI inside the table header.
+
+---
+
+## 📁 Project Structure (Simplified)
+
+```text
+src/
+├── App.tsx
+├── main.tsx
+├── index.css
+```
+
+---
+
+## 🔮 Possible Improvements
+
+* Add global search and column filters
+* Persist selections in local storage
+* Add sorting support
+* Improve accessibility (ARIA labels)
+* Extract table logic into reusable components
+
+---
+
+## 📜 License
+
+This project is open-source and available under the **MIT License**.
+
+---
+
+## 🙌 Acknowledgements
+
+* [PrimeReact](https://primereact.org/)
+* [Art Institute of Chicago API](https://api.artic.edu/)
+
+---
