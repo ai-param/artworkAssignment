@@ -7,6 +7,7 @@ import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputNumber } from 'primereact/inputnumber';
 import 'primeicons/primeicons.css';
+import { Checkbox } from 'primereact/checkbox';
 
 interface ArtWork{
   id:number;
@@ -92,8 +93,7 @@ function App() {
   }
 
   const handleSelect = (select:any)=>{
-    const newSelection = select.value;
-    setSelectedArtWorks(newSelection);
+    setSelectedArtWorks(select.value);
   }
 
   const headerTemplate = () => {
@@ -107,13 +107,14 @@ function App() {
           />
           <OverlayPanel ref={op}>
               <div>
-                  <span>Select Rows</span>
-                  <div>
+                  <h4>Select Multiple Rows</h4>
+                  <p>Enter number of rows to select across all pages</p>
+                  <div style={{display:"flex",gap:"20px"}}>
                       <InputNumber 
-                          placeholder="Number of rows..." 
+                          placeholder="e.g.,20" 
                           onValueChange={(e:any) => inputRef.current = e.value} 
                       />
-                      <Button label="Submit" onClick={handleCustomSelectSubmit} />
+                      <Button label="Select" onClick={handleCustomSelectSubmit} />
                   </div>
               </div>
           </OverlayPanel>
@@ -124,7 +125,7 @@ function App() {
   return (
     <div style={{padding:'2rem',maxWidth:'1400px',margin:'0 auto'}}>
     <div style={{marginBottom:'2rem'}}>
-     {selectedArtWorks.length > 0 && (
+     {selectedArtWorks.length >= 0 && (
           <div style={{ 
             marginTop: '1rem', 
             padding: '0.75rem 1rem', 
@@ -133,7 +134,7 @@ function App() {
             color: '#1e40af',
             fontSize: '0.9rem'
           }}>
-            <strong>{selectedArtWorks.length}</strong> artwork{selectedArtWorks.length !== 1 ? 's' : ''} selected
+            selected: <strong>{selectedArtWorks.length}</strong> rows
           </div>
         )}
     </div>
@@ -152,8 +153,10 @@ function App() {
         first={rowsPerPage*currentPage}
         onPage={handlePage}
         stripedRows
-        paginatorTemplate="PrevPageLink PageLinks NextPageLink CurrentPageReport"
+        paginatorTemplate="CurrentPageReport PrevPageLink PageLinks NextPageLink"
         currentPageReportTemplate='Showing {first} to {last} of {totalRecords} entries'
+        paginatorLeft
+        paginatorClassName='custom-paginator'
       >
         <Column
           selectionMode='multiple'
@@ -162,37 +165,37 @@ function App() {
         />
         <Column 
           field='title'
-          header="Title"
-          style={{minWidth:'250px'}}
+          header="TITLE"
+          style={{minWidth:'250px',fontWeight:'bold'}}
           body={(rowData)=>rowData.title || 'Untitled'}
         />
         <Column
           field='place_of_origin'
-          header='Place of Origin'
+          header='PLACE OF ORIGIN'
           style={{minWidth:'150px'}}
           body={(rowData)=>rowData.place_of_origin || 'N/A'}
         />
         <Column
           field='artist_display'
-          header='Artist'
-          style={{minWidth:'200px'}}
+          header='ARTIST'
+          style={{maxWidth:'200px',overflow:'hidden',textOverflow:'ellipsis',whiteSpace:'nowrap'}}
           body={(rowData)=>rowData.artist_display || 'Unknown'}
         />
         <Column
           field='inscriptions'
-          header='Inscriptions'
+          header='INSCRIPTIONS'
           style={{minWidth:'200px'}}
-          body={(rowData)=>rowData.inscription || 'None'}
+          body={(rowData)=>rowData.inscriptions || 'None'}
         />
         <Column
           field='date_start'
-          header='Start Date'
+          header='START DATE'
           style={{minWidth:'120px'}}
           body={(rowData)=>rowData.date_start || 'N/A'}
         />
         <Column
           field='date_end'
-          header='End Date'
+          header='END DATE'
           style={{minWidth:'120px'}}
           body={rowData=>rowData.date_end || 'N/A'}
         />

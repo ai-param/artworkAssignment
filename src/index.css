@@ -1,0 +1,12 @@
+.custom-paginator {
+  justify-content: space-between;
+  padding: 1rem;
+}
+
+.custom-paginator .p-paginator-current {
+  margin-right: 600px;
+}
+
+.custom-paginator .p-paginator-pages {
+  margin-left: auto;
+}
