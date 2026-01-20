@@ -7,7 +7,6 @@ import { Button } from 'primereact/button';
 import { OverlayPanel } from 'primereact/overlaypanel';
 import { InputNumber } from 'primereact/inputnumber';
 import 'primeicons/primeicons.css';
-import { Checkbox } from 'primereact/checkbox';
 
 interface ArtWork{
   id:number;
